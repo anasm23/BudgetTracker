@@ -44,9 +44,12 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="index.js"></script>
   <script>
+    //request
+    var req = window.indexedDB.open("budgetdb", 2);
     // request db
     const request = indexedDB.open("budgetdb", 1);
     const objectStore = db.createObjectStore("budgetdb");
+    objectStore.createIndex("budgetdb", "Transactions", "Amount");
 
     request.onsuccess = event => {
       console.log(request.result);
