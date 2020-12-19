@@ -1,15 +1,17 @@
 {
-    "name": "budget tracker",
-    "short_name": "BT",
-    "icons": [
-        {
-            "src": "icons/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-          }       
-    ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "start_url": "/service.worker.js"
-  }
+  "name": "budget-app",
+  "short_name": "budget-app",
+  "theme_color": "#00a699",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+        "src": "./icons/icon-192x192 copy.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }       
+]
+}

@@ -44,35 +44,14 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="index.js"></script>
   <script>
-    //request
-    var req = window.indexedDB.open("budgetdb", 2);
-    // request db
-    const request = indexedDB.open("budgetdb", 1);
-    
-    const objectStore = db.createObjectStore("budgetdb");
-    objectStore.createIndex("budgetdb", "Transactions", "Amount");
-
-    request.onsuccess = event => {
-      console.log(request.result);
-    }; 
-
-    request.onerror = event => console.error(event);
-
-    function checkDatabase() {
-      const db = request.result;
-      let transaction = db.transaction('readwrite');
-      let store = transaction.objectStore();
-
-      const keepall = store.keepall();
-      keepall.onsucess = () => {
-        if (keepall.result.length > 0) {
-          fetch('/api/') , {
-            method: 'Post',
-            body: Json.stringify(keepall.result),
-          }
-        }
-      }
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js")
+          .then(reg => {
+            console.log("We found your service worker file!", reg);
+          });
+      });
     }
-    </script>
+  </script>
 </body>
 </html>
