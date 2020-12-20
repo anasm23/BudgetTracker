@@ -3,12 +3,11 @@ let myChart;
 
 fetch("/api/transaction")
   .then(response => {
-    return response.json();
+   return response.json();
   })
   .then(data => {
-    // save db data on global variable
+    //save db
     transactions = data;
-
     populateTotal();
     populateTable();
     populateChart();

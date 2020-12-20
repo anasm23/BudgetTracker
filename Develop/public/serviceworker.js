@@ -11,14 +11,32 @@ const DATA_CACHE_NAME = 'data-cache-v1'
 
 const iconSizes = ["192"];
 const iconFiles = iconSizes.map(
-  (size) => `/public/icons/icon-${size}x${size}.png`
+  (size) => `./icons/icon-${size}x${size}.png`
 );
-// 
-self.addEventListener("install", function (evt){
+
+// install
+self.addEventListener("install", evt =>{
     evt.waitUntil(
-        caches.open(DATA_CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
+        caches.open(DATA_CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE)),
+        console.log("success")
     );
     self.skipWaiting();
+});
+//activate
+self.addEventListener('activate', evt => {
+  evt.waitUntil(
+      caches.keys().then(keyList => {
+          return Promise.all(
+              keyList.map( key => {
+                  if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+                      console.log('Data Removed', key);
+                      return caches.delete(key);
+                  }
+              })
+          );
+      })
+  );
+  self.clients.claim();
 });
 //fetch
 self.addEventListener("fetch", evt => {
