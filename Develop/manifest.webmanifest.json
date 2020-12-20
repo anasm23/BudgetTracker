@@ -1,0 +1,14 @@
+{
+  "name": "budget-app",
+  "short_name": "budget-app",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icon-192x192 copy.png",
+      "sizes": "192x192",
+      "type": "png"
+    }
+  ]
+}

@@ -1,12 +1,13 @@
 // Declare files to cache
 const FILES_TO_CACHE = [
-    '/db.js',
     '/index.html',
     '/index.js',
     '/style.css',
+    'db.js',  
 ];
+
 const STATIC_CACHE = `static-cache-v1`;
-const RUNTIME_CACHE = `runtime-cache`;
+const DATA_CACHE_NAME = 'data-cache-v1'
 
 const iconSizes = ["192"];
 const iconFiles = iconSizes.map(
@@ -15,7 +16,7 @@ const iconFiles = iconSizes.map(
 // 
 self.addEventListener("install", function (evt){
     evt.waitUntil(
-        caches.open(RUNTIME_CACHE).then(cache => cache.addAll(FILES_TO_CACHE))
+        caches.open(DATA_CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
     );
     self.skipWaiting();
 });
@@ -42,7 +43,7 @@ self.addEventListener("fetch", evt => {
     }
 
     evt.respondWith(
-      caches.open(RUNTIME_CACHE).then( cache => {
+      caches.open(DATA_CACHE_NAME).then( cache => {
           return cache.match(evt.request).then(response => {
               return response || fetch(evt.request)
           });
