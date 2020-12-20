@@ -2,6 +2,16 @@
 const request = indexedDB.open("budget", 1);
 let db;
 
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/BudgetApp',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
+
 request.onupgradeneeded = function(event) {
   const db = event.target.result;
   db.createObjectStore("pending", { autoIncrement: true });
