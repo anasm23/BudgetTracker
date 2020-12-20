@@ -20,7 +20,7 @@ self.addEventListener("install", function (evt){
     );
     self.skipWaiting();
 });
-
+//fetch
 self.addEventListener("fetch", evt => {
     if (evt.request.url.includes("/api/")) {
       evt.respondWith(
@@ -38,10 +38,9 @@ self.addEventListener("fetch", evt => {
             });
         }).catch(err => console.log(err))
       );
-  
       return;
     }
-
+// cache 
     evt.respondWith(
       caches.open(DATA_CACHE_NAME).then( cache => {
           return cache.match(evt.request).then(response => {
