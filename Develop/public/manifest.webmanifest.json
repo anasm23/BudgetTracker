@@ -1,7 +1,0 @@
-{
-  "name": "budget-app",
-  "short_name": "budget-app",
-  "theme_color": "#ffffff",
-  "start_url": ".",
-  "display": "standalone"
-}
