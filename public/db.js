@@ -1,4 +1,3 @@
-let db;
 const indexedDB= window.indexedDB; 
 const request = indexedDB.open("budget", 1);
 ///////
@@ -10,6 +9,7 @@ request.onupgradeneeded = function(event) {
 //////
 request.onsuccess = function(event) {
   db = event.target.result;
+  /// check if its online
   if (navigator.onLine) {
     checkDatabase();
   }
